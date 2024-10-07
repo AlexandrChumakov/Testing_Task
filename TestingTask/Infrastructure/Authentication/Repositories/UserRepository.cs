@@ -6,9 +6,11 @@ using Npgsql;
 
 namespace Infrastructure.Authentication.Repositories;
 
-public class UserRepository(string connString) : IUserRepository
+public class UserRepository : IUserRepository
 {
-    private IDbConnection Connection => new NpgsqlConnection(connString);
+    private const string ConnString = "Host=localhost;Port=5431;Database=testedProj;Username=postgres;Password=password";
+
+    private IDbConnection Connection => new NpgsqlConnection(ConnString);
 
     public async Task<User?> GetByPhoneAsync(string phone)
     {

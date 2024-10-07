@@ -5,7 +5,7 @@ using Domain.Authentication.Models;
 
 namespace Application.Authentication.Services;
 
-public sealed class UserService(IUserRepository repository, IPasswordHasher passwordHasher)
+public sealed class UserService(IUserRepository repository, IPasswordHasher passwordHasher) : IUserService
 {
     public async Task RegisterUserAsync(User user)
     {
@@ -24,9 +24,6 @@ public sealed class UserService(IUserRepository repository, IPasswordHasher pass
             return user;
         
         var isPasswordCorrect = passwordHasher.Verify(request.Password, user.Password);
-        if (!isPasswordCorrect)
-            return null;
-
-        return user;
+        return !isPasswordCorrect ? null : user;
     }
 }
