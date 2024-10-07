@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "69RdJvnJAvJ20Xe+H2j3o0Hchn4BSmh7gaBCk0ZHglHcRDUGyu61z85Z8LMWxETTrKXh3xdaGNUZUjucYMlA/w==",
+  "dgSpecHash": "4DHz6jsMAGvzx5gHVqMCk47vUYTNbUZPbRmy978L6iTJ8rh7akSHLEnDDrPKzvw2jur4BHymXPAt7KiqCRwijg==",
   "success": true,
   "projectFilePath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/WebApi/WebApi.csproj",
   "expectedPackageFiles": [
+    "/Users/alex/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512",
     "/Users/alex/.nuget/packages/microsoft.aspnetcore.openapi/8.0.7/microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",
     "/Users/alex/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/alex/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
