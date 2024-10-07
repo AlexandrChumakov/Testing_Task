@@ -7,8 +7,26 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Authentication\" />
       <Folder Include="WebScraper\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Responses.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Responses.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Responses.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Responses.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
