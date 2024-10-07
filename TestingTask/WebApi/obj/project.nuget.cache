@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0Zs3hocQu3zZYkO4PvK1C/S7hwBq+NmhMmZKdGr+fKNcxBz0CinDnaawf7OG7w5ct8k6XtKazO2MepV41e0ixA==",
+  "dgSpecHash": "69RdJvnJAvJ20Xe+H2j3o0Hchn4BSmh7gaBCk0ZHglHcRDUGyu61z85Z8LMWxETTrKXh3xdaGNUZUjucYMlA/w==",
   "success": true,
-  "projectFilePath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/TestingTask.WebApi/TestingTask.WebApi.csproj",
+  "projectFilePath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/WebApi/WebApi.csproj",
   "expectedPackageFiles": [
     "/Users/alex/.nuget/packages/microsoft.aspnetcore.openapi/8.0.7/microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",
     "/Users/alex/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

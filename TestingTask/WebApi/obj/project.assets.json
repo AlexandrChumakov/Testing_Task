@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/TestingTask.WebApi/TestingTask.WebApi.csproj",
-      "projectName": "TestingTask.WebApi",
-      "projectPath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/TestingTask.WebApi/TestingTask.WebApi.csproj",
+      "projectUniqueName": "2/Users/alex/Desktop/CSharp/mouns12/TestingTask/WebApi/WebApi.csproj",
+      "projectName": "WebApi",
+      "projectPath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/WebApi/WebApi.csproj",
       "packagesPath": "/Users/alex/.nuget/packages/",
-      "outputPath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/TestingTask.WebApi/obj/",
+      "outputPath": "/Users/alex/Desktop/CSharp/mouns12/TestingTask/WebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alex/.nuget/NuGet/NuGet.Config"
