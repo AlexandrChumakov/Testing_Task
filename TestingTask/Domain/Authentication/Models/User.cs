@@ -1,6 +1,6 @@
 namespace Domain.Authentication.Models;
 
-public sealed class User
+public struct User
 {
     public int Id { get; set; }
     public string Phone { get; set; }

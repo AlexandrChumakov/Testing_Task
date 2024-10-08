@@ -12,7 +12,7 @@ public class AuthService(IUserService userService) : IAuthService
         if (user is null)
             return null;
 
-        var claims = new List<Claim> { new(ClaimTypes.Name, user.Phone) };
+        var claims = new List<Claim> { new(ClaimTypes.Name, user.Value.Phone) };
         var claimIdentity = new ClaimsIdentity(claims, "Cookies");
         return new ClaimsPrincipal(claimIdentity);
     }

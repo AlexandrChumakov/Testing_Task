@@ -24,7 +24,7 @@ public sealed class UserService(IUserRepository repository, IPasswordHasher pass
         if (user is null)
             return user;
 
-        var isPasswordCorrect = passwordHasher.Verify(request.Password, user.Password);
+        var isPasswordCorrect = passwordHasher.Verify(request.Password, user.Value.Password);
         return !isPasswordCorrect ? null : user;
     }
 }
