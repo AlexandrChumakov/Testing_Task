@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Shared\" />
       <Folder Include="WebScraper\" />
     </ItemGroup>
 
@@ -15,6 +16,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Resources\Responses.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Responses.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\Responses.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Responses.Designer.cs</LastGenOutput>
