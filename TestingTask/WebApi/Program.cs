@@ -1,4 +1,5 @@
 using TestingTask.WebApi.Authentication.Services;
+using TestingTask.WebApi.WebScraper.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -7,6 +8,8 @@ var services = builder.Services;
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
+services.AddWebScraperServices();
+services.AddHostedService<AddDefaultsPosts>();
 services.AddAuthenticationServices();
 
 
