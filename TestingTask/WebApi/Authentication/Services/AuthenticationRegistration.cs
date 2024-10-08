@@ -14,7 +14,9 @@ public static class AuthenticationRegistration
         collection.AddTransient<IUserService, UserService>();
         collection.AddTransient<IPasswordHasher, PasswordHasher>();
         collection.AddTransient<IUserRepository, UserRepository>();
+        collection.AddTransient<IAuthService, AuthService>();
         collection.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/api/login");
+        collection.AddAuthorization();
     }
 }

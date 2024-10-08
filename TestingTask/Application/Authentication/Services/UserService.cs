@@ -13,7 +13,8 @@ public sealed class UserService(IUserRepository repository, IPasswordHasher pass
 
         if (identity is not null)
             throw new DuplicateNameException(Responses.User_alredy_exist);
-
+        var pass = passwordHasher.Generate(user.Password);
+        user.Password = pass;
         await repository.CreateAsync(user);
     }
 
@@ -22,7 +23,7 @@ public sealed class UserService(IUserRepository repository, IPasswordHasher pass
         var user = await repository.GetByPhoneAsync(request.Phone);
         if (user is null)
             return user;
-        
+
         var isPasswordCorrect = passwordHasher.Verify(request.Password, user.Password);
         return !isPasswordCorrect ? null : user;
     }
