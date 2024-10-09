@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using Application.Authentication.Interfaces;
 
-namespace Infrastructure.Authentication.Ports.Security;
+namespace Infrastructure.Authentication.Services;
 
 public class PasswordHasher : IPasswordHasher
 {

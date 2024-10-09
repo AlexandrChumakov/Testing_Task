@@ -10,6 +10,7 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddWebScraperServices();
 services.AddHostedService<AddDefaultsPosts>();
+services.AddHostedService<AddDefaultTable>();
 services.AddAuthenticationServices();
 
 

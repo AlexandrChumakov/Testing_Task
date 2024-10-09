@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using Application.WebScraper.Interfaces;
@@ -11,32 +12,33 @@ public partial class PostParser : IPostParser
     private const string Url = "https://www.zakon.kz/";
     private readonly List<JsonNode> _jsonNodes = [];
     private readonly List<Post> _posts = [];
+    private readonly Random _random = new();
 
-    public async Task<List<Post>> ParsePosts()
+    public async Task<List<Post>> ParsePostsAsync()
     {
         var client = new HttpClient();
 
-        using var pageOne = await client.GetAsync($"{Url}api/today-news/?pn=1&pSize=50");
+        using var pageOne = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(1, 500)}&pSize=50");
         pageOne.EnsureSuccessStatusCode();
-        await AddListPosts(pageOne);
+        await AddListPostsAsync(pageOne);
 
-        using var pageTwo = await client.GetAsync($"{Url}api/today-news/?pn=3&pSize=50");
+        using var pageTwo = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(1,500)}&pSize=50");
         pageTwo.EnsureSuccessStatusCode();
-        await AddListPosts(pageTwo);
+        await AddListPostsAsync(pageTwo);
 
-        await ParseHtml(client);
+        await ParseHtmlAsync(client);
 
         return _posts;
     }
 
-    private async Task AddListPosts(HttpResponseMessage responseMessage)
+    private async Task AddListPostsAsync(HttpResponseMessage responseMessage)
     {
         var responseBody = await responseMessage.Content.ReadAsStringAsync();
         var json = JsonNode.Parse(responseBody)!.AsObject();
         _jsonNodes.AddRange(json["data_list"]!.AsArray().ToList()!);
     }
 
-    private async Task ParseHtml(HttpClient client)
+    private async Task ParseHtmlAsync(HttpClient client)
     {
         foreach (var item in _jsonNodes)
         {

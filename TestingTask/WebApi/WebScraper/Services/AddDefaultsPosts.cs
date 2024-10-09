@@ -1,4 +1,5 @@
 using Application.WebScraper.Service;
+using Infrastructure.WebScraper.Repositories;
 
 namespace TestingTask.WebApi.WebScraper.Services;
 
@@ -10,7 +11,10 @@ public class AddDefaultsPosts(IServiceProvider serviceProvider) : IHostedService
         {
             var scope = serviceProvider.CreateScope();
             var postInitializer = scope.ServiceProvider.GetRequiredService<PostInitializer>();
-            await postInitializer.AddDefaultPosts().ConfigureAwait(false);
+            var createDb = scope.ServiceProvider.GetRequiredService<PostDb>();
+
+            await createDb.CreateTablesAsync().ConfigureAwait(false);
+            await postInitializer.AddDefaultPostsAsync().ConfigureAwait(false);
         }
         catch (Exception e)
         {

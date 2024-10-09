@@ -1,7 +1,7 @@
 using Application.Authentication.Interfaces;
 using Application.Authentication.Services;
-using Infrastructure.Authentication.Ports.Security;
 using Infrastructure.Authentication.Repositories;
+using Infrastructure.Authentication.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
@@ -15,6 +15,7 @@ public static class AuthenticationRegistration
         collection.AddTransient<IPasswordHasher, PasswordHasher>();
         collection.AddTransient<IUserRepository, UserRepository>();
         collection.AddTransient<IAuthService, AuthService>();
+        collection.AddTransient<UserDb>();
         collection.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/api/login");
         collection.AddAuthorization();

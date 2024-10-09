@@ -4,5 +4,5 @@ namespace Application.WebScraper.Interfaces;
 
 public interface IPostParser
 {
-    Task<List<Post>> ParsePosts();
+    Task<List<Post>> ParsePostsAsync();
 }

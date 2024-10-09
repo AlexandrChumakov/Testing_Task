@@ -12,5 +12,7 @@ public static class WebScraperRegistration
         collection.AddTransient<IPostParser, PostParser>();
         collection.AddTransient<IPostRepository, PostRepository>();
         collection.AddTransient<PostInitializer>();
+        collection.AddTransient<PostDb>();
+        collection.AddTransient<IPostService, PostService>();
     }
 }
