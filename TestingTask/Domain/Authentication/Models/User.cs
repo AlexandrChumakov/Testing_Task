@@ -1,6 +1,6 @@
 namespace Domain.Authentication.Models;
 
-public struct User
+public class User
 {
     public int Id { get; set; }
     public string Phone { get; set; }

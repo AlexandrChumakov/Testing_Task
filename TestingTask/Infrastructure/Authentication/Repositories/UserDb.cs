@@ -25,6 +25,6 @@ alter table users
     owner to postgres;
 
 ";
-       await Connection.ExecuteAsync(sql);
+        await Connection.ExecuteAsync(sql);
     }
 }

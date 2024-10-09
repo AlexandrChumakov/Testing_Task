@@ -5,7 +5,6 @@ namespace Application.WebScraper.Service;
 
 public sealed class PostService(IPostRepository postRepository) : IPostService
 {
-
     public async Task<string> TakeTopTenAsync()
     {
         return await postRepository.TakeTopTenAsync();

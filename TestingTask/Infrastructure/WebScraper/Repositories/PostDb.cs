@@ -11,11 +11,11 @@ public class PostDb
 
     private static IDbConnection Connection => new NpgsqlConnection(ConnString);
 
-   public async Task CreateTablesAsync()
-{
-    using var dbConnection = Connection;
-    const string sql =
-        @"CREATE TABLE IF NOT EXISTS public.posts(
+    public async Task CreateTablesAsync()
+    {
+        using var dbConnection = Connection;
+        const string sql =
+            @"CREATE TABLE IF NOT EXISTS public.posts(
             title VARCHAR(2500) NOT NULL, 
             date DATE, 
             description varchar NOT NULL
@@ -89,6 +89,6 @@ public class PostDb
         END;
         $$;";
 
-    await dbConnection.ExecuteAsync(sql);
-}
+        await dbConnection.ExecuteAsync(sql);
+    }
 }

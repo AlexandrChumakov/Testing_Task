@@ -8,7 +8,7 @@ public class PostInitializer(IPostParser postParser, IPostRepository postReposit
     {
         var posts = await postRepository.TakePostsAsync();
         if (posts.Count >= 30)
-           return;
+            return;
 
         await postRepository.AddPostsAsync(await postParser.ParsePostsAsync());
     }

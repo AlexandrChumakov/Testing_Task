@@ -3,7 +3,7 @@ using TestingTask.WebApi.Shared.Resources;
 
 namespace TestingTask.WebApi.Authentication.DTOs;
 
-public class UserRegisterDto
+public struct UserRegisterDto
 {
     [RegularExpression(@"^\d{10}$", ErrorMessageResourceType = typeof(Responses),
         ErrorMessageResourceName = "Format_phone")]
