@@ -17,11 +17,11 @@ public partial class PostParser : IPostParser
     {
         var client = new HttpClient();
 
-        using var pageOne = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(1, 500)}&pSize=50");
+        using var pageOne = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(1, 300)}&pSize=50");
         pageOne.EnsureSuccessStatusCode();
         await AddListPostsAsync(pageOne);
 
-        using var pageTwo = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(1,500)}&pSize=50");
+        using var pageTwo = await client.GetAsync($"{Url}api/today-news/?pn={_random.Next(300,500)}&pSize=50");
         pageTwo.EnsureSuccessStatusCode();
         await AddListPostsAsync(pageTwo);
 

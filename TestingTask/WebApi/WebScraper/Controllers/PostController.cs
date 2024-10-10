@@ -12,6 +12,7 @@ public class PostController(IPostRepository repository) : ControllerBase
 {
     [Route("topten")]
     [HttpGet]
+    [ProducesResponseType<string>(200)]
     public async Task<ActionResult> TopTenAsync()
     {
         return Ok(await repository.TakeTopTenAsync());
@@ -19,6 +20,7 @@ public class PostController(IPostRepository repository) : ControllerBase
 
     [Route("posts")]
     [HttpGet]
+    [ProducesResponseType<List<Post>>(200)]
     public async Task<ActionResult<List<Post>>> TopTenAsync([FromQuery(Name = "from")] DateTime from,
         [FromQuery(Name = "to")] DateTime to)
     {
@@ -27,6 +29,7 @@ public class PostController(IPostRepository repository) : ControllerBase
 
     [Route("search")]
     [HttpGet]
+    [ProducesResponseType<List<Post>>(200)]
     public async Task<ActionResult> SearchAsync([FromQuery(Name = "text")] string value)
     {
         return Ok(await repository.GetContainsAsync(value));
