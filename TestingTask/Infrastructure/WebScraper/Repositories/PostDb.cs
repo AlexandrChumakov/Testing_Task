@@ -81,19 +81,19 @@ public class PostDb(NpgsqlConnection npgsqlConnection)
             VALUES (p_title, p_post_date::date, p_description);
         END;
         $$;
-        
-        CREATE OR replace FUNCTION contains_in_posts(value varchar(5000))
-    RETURNS SETOF posts AS
-$$
-BEGIN
-    return query 
-    select *
-    from posts
-    where posts.description like '%' || value || '%';
-END;
-$$ LANGUAGE plpgsql;
+          CREATE OR REPLACE FUNCTION contains_in_posts(value VARCHAR(5000))
+            RETURNS SETOF posts AS
+            $$
+            BEGIN
+                RETURN QUERY 
+                SELECT *
+                FROM posts
+                WHERE posts.description LIKE '%' || value || '%';
+            END;
+            $$ LANGUAGE plpgsql;
         ";
 
+        Thread.Sleep(1000);
         await npgsqlConnection.ExecuteAsync(sql);
     }
 }

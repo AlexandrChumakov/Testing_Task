@@ -1,0 +1,22 @@
+﻿services:
+  test_db:
+    image: postgres:latest
+    container_name: test_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testedProj
+    ports:
+      - "5431:5432"
+
+  webapi:
+    image: webapi
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+    container_name: test_proj_back
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=test_db;Port=5432;Database=testedProj;Username=postgres;Password=password"
+    depends_on:
+      - test_db

@@ -1,5 +1,6 @@
 using Npgsql;
 using TestingTask.WebApi.Authentication.Services;
+using TestingTask.WebApi.Middleware;
 using TestingTask.WebApi.WebScraper.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ services.AddTransient<NpgsqlConnection>(_ =>
     new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
 services.AddHostedService<AddDefaultsPosts>();
 services.AddHostedService<AddDefaultTable>();
+services.AddLocalization(options => { options.ResourcesPath = "Resources"; });
 services.AddAuthenticationServices();
 
 
@@ -26,7 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<HttpExceptionMiddleware>();
 app.MapControllers();
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

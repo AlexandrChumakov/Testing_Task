@@ -10,7 +10,8 @@ public class AddDefaultsPosts(IServiceProvider serviceProvider) : IHostedService
         try
         {
             var scope = serviceProvider.CreateScope();
-            var postInitializer = scope.ServiceProvider.GetRequiredService<PostInitializer>();
+            var scope2 = serviceProvider.CreateScope();
+            var postInitializer = scope2.ServiceProvider.GetRequiredService<PostInitializer>();
             var createDb = scope.ServiceProvider.GetRequiredService<PostDb>();
 
             await createDb.CreateTablesAsync().ConfigureAwait(false);

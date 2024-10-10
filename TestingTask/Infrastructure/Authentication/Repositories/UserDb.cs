@@ -19,6 +19,8 @@ alter table users
     owner to postgres;
 
 ";
+      
+        Thread.Sleep(1000);
         await npgsqlConnection.ExecuteAsync(sql);
     }
 }
