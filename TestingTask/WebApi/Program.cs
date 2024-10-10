@@ -1,3 +1,4 @@
+using Npgsql;
 using TestingTask.WebApi.Authentication.Services;
 using TestingTask.WebApi.WebScraper.Services;
 
@@ -9,6 +10,8 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddWebScraperServices();
+services.AddTransient<NpgsqlConnection>(_ =>
+    new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
 services.AddHostedService<AddDefaultsPosts>();
 services.AddHostedService<AddDefaultTable>();
 services.AddAuthenticationServices();

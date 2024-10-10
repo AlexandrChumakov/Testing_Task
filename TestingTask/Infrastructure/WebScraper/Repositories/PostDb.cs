@@ -1,24 +1,17 @@
-using System.Data;
 using Dapper;
 using Npgsql;
 
 namespace Infrastructure.WebScraper.Repositories;
 
-public class PostDb
+public class PostDb(NpgsqlConnection npgsqlConnection)
 {
-    private const string ConnString =
-        "Host=localhost;Port=5431;Database=testedProj;Username=postgres;Password=password";
-
-    private static IDbConnection Connection => new NpgsqlConnection(ConnString);
-
     public async Task CreateTablesAsync()
     {
-        using var dbConnection = Connection;
         const string sql =
             @"CREATE TABLE IF NOT EXISTS public.posts(
             title VARCHAR(2500) NOT NULL, 
             date DATE, 
-            description varchar NOT NULL
+            description varchar(5000) NOT NULL
         );
         ALTER TABLE posts OWNER TO postgres;
 
@@ -80,15 +73,27 @@ public class PostDb
         END;
         $$ LANGUAGE plpgsql;
 
-        CREATE OR REPLACE PROCEDURE put_posts(p_title VARCHAR(2500), p_post_date timestamp without time zone, p_description text)
+        CREATE OR REPLACE PROCEDURE put_posts(p_title VARCHAR(2500), p_post_date timestamp without time zone, p_description VARCHAR(5000))
         LANGUAGE plpgsql
         AS $$
         BEGIN
             INSERT INTO posts(title, date, description)
             VALUES (p_title, p_post_date::date, p_description);
         END;
-        $$;";
+        $$;
+        
+        CREATE OR replace FUNCTION contains_in_posts(value varchar(5000))
+    RETURNS SETOF posts AS
+$$
+BEGIN
+    return query 
+    select *
+    from posts
+    where posts.description like '%' || value || '%';
+END;
+$$ LANGUAGE plpgsql;
+        ";
 
-        await dbConnection.ExecuteAsync(sql);
+        await npgsqlConnection.ExecuteAsync(sql);
     }
 }
