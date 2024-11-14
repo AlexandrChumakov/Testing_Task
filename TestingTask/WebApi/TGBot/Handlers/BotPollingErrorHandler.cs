@@ -1,6 +1,6 @@
 using Telegram.Bot.Exceptions;
 
-namespace TestingTask.WebApi.WebScraper.TGBot.Handlers;
+namespace TestingTask.WebApi.TGBot.Handlers;
 
 public class BotPollingErrorHandler
 {

@@ -4,7 +4,7 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace TestingTask.WebApi.WebScraper.TGBot.Handlers;
+namespace TestingTask.WebApi.TGBot.Handlers;
 
 public class MessageHandler(TelegramBotClient botClient, IPostRepository postRepository) : IBotUpdateHandler
 {
