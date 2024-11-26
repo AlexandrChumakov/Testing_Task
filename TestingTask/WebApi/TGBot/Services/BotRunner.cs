@@ -9,8 +9,8 @@ namespace TestingTask.WebApi.TGBot.Services;
 public sealed class BotRunner(
     TelegramBotClient botClient,
     CancellationTokenSource cancellationTokenSource,
-    BotPollingErrorHandler pollingErrorHandler,
-    IBotUpdateHandler updateHandler)
+    IBotUpdateHandler updateHandler,
+    CallbackQueryHandler callbackQueryHandler)
 {
     public async Task StartAsync()
     {
@@ -19,22 +19,31 @@ public sealed class BotRunner(
 
         botClient.StartReceiving(
             HandleUpdateAsync,
-            (_, exception, cancellationToken) => 
-                pollingErrorHandler.HandlePollingErrorAsync(exception, cancellationToken),
+            (_, exception, _) =>
+                BotPollingErrorHandler.HandlePollingErrorAsync(exception),
             receiverOptions: new Telegram.Bot.Polling.ReceiverOptions
             {
                 AllowedUpdates = Array.Empty<UpdateType>()
             },
             cancellationToken: cancellationTokenSource.Token);
-        
+
         await Task.Delay(-1, cancellationTokenSource.Token);
     }
 
-    private async Task HandleUpdateAsync(ITelegramBotClient telegramBotClient, Update update, CancellationToken cancellationToken)
+    private async Task HandleUpdateAsync(ITelegramBotClient telegramBotClient, Update update,
+        CancellationToken cancellationToken)
     {
         try
         {
-            await updateHandler.HandelUpdateAsync(update, cancellationToken);
+            switch (update.Type)
+            {
+                case UpdateType.Message:
+                    await updateHandler.HandelUpdateAsync(update, cancellationToken);
+                    break;
+                case UpdateType.CallbackQuery:
+                    await callbackQueryHandler.HandelUpdateAsync(update, cancellationToken);
+                    break;
+            }
         }
         catch (Exception ex)
         {

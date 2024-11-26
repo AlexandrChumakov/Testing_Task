@@ -4,7 +4,7 @@ namespace TestingTask.WebApi.TGBot.Handlers;
 
 public class BotPollingErrorHandler
 {
-    public Task HandlePollingErrorAsync(Exception exception, CancellationToken cancellationToken)
+    public static Task HandlePollingErrorAsync(Exception exception)
     {
         var errorMessage = exception switch
         {

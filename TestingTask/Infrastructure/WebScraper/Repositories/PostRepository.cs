@@ -23,6 +23,13 @@ public class PostRepository(NpgsqlConnection npgsqlConnection) : IPostRepository
         return posts.ToList();
     }
 
+    public async Task<List<Post>> TakeLastTenAsync()
+    {
+        const string sql = @"SELECT * FROM posts ORDER BY posts.date DESC LIMIT 10";
+        var posts = await npgsqlConnection.QueryAsync<Post>(sql);
+        return posts.ToList();
+    }
+
     public async Task<string> TakeTopTenAsync()
     {
         const string sql = @"SELECT * FROM get_top_ten()";

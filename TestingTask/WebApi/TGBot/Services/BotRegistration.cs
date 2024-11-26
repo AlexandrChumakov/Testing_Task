@@ -8,6 +8,7 @@ public static class BotRegistration
     public static void AddTgBotServices(this IServiceCollection collection)
     {
         collection.AddTransient<IBotUpdateHandler, MessageHandler>();
+        collection.AddTransient<CallbackQueryHandler>();
         collection.AddTransient<BotPollingErrorHandler>();
         collection.AddTransient<CancellationTokenSource>();
         collection.AddTransient<BotRunner>(); 

@@ -9,4 +9,5 @@ public interface IPostRepository
     Task<string> TakeTopTenAsync();
     Task<List<Post>> GetSortedAsync(DateTime from, DateTime to);
     Task<List<Post>> GetContainsAsync(string word);
+    Task<List<Post>> TakeLastTenAsync();
 }
