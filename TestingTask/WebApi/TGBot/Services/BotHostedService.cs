@@ -1,15 +1,10 @@
 namespace TestingTask.WebApi.TGBot.Services;
 
-public class BotHostedService(BotRunner botRunner) : IHostedService
+public class BotHostedService(BotRunner botRunner) : BackgroundService
 {
-    public async Task StartAsync(CancellationToken cancellationToken)
+    
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await botRunner.StartAsync();
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        botRunner.Stop();
-        return Task.CompletedTask;
     }
 }
