@@ -1,9 +1,9 @@
 using Dapper;
 using Npgsql;
 
-namespace Infrastructure.WebScraper.Repositories;
+namespace Infrastructure.Shared;
 
-public class PostDb(NpgsqlConnection npgsqlConnection)
+public sealed class PostDb(NpgsqlConnection npgsqlConnection)
 {
     public async Task CreateTablesAsync()
     {

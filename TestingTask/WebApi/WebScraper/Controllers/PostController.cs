@@ -20,8 +20,8 @@ public class PostController(IPostRepository repository) : ControllerBase
 
     [Route("posts")]
     [HttpGet]
-    [ProducesResponseType<List<Post>>(200)]
-    public async Task<ActionResult<List<Post>>> TopTenAsync([FromQuery(Name = "from")] DateTime from,
+    [ProducesResponseType<List<WebPost>>(200)]
+    public async Task<ActionResult<List<WebPost>>> TopTenAsync([FromQuery(Name = "from")] DateTime from,
         [FromQuery(Name = "to")] DateTime to)
     {
         return Ok(await repository.GetSortedAsync(from, to));
@@ -29,7 +29,7 @@ public class PostController(IPostRepository repository) : ControllerBase
 
     [Route("search")]
     [HttpGet]
-    [ProducesResponseType<List<Post>>(200)]
+    [ProducesResponseType<List<WebPost>>(200)]
     public async Task<ActionResult> SearchAsync([FromQuery(Name = "text")] string value)
     {
         return Ok(await repository.GetContainsAsync(value));

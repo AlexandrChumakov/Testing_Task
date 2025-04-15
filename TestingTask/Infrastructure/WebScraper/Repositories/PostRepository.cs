@@ -7,7 +7,7 @@ namespace Infrastructure.WebScraper.Repositories;
 
 public class PostRepository(NpgsqlConnection npgsqlConnection) : IPostRepository
 {
-    public async Task AddPostsAsync(List<Post> posts)
+    public async Task AddPostsAsync(List<WebPost> posts)
     {
         foreach (var post in posts)
         {
@@ -16,19 +16,13 @@ public class PostRepository(NpgsqlConnection npgsqlConnection) : IPostRepository
         }
     }
 
-    public async Task<List<Post>> TakePostsAsync()
+    public async Task<List<WebPost>> TakePostsAsync()
     {
         const string sql = @"SELECT * FROM posts";
-        var posts = await npgsqlConnection.QueryAsync<Post>(sql);
+        var posts = await npgsqlConnection.QueryAsync<WebPost>(sql);
         return posts.ToList();
     }
-
-    public async Task<List<Post>> TakeLastTenAsync()
-    {
-        const string sql = @"SELECT * FROM posts ORDER BY posts.date DESC LIMIT 10";
-        var posts = await npgsqlConnection.QueryAsync<Post>(sql);
-        return posts.ToList();
-    }
+    
 
     public async Task<string> TakeTopTenAsync()
     {
@@ -38,17 +32,17 @@ public class PostRepository(NpgsqlConnection npgsqlConnection) : IPostRepository
         return list[0];
     }
 
-    public async Task<List<Post>> GetSortedAsync(DateTime from, DateTime to)
+    public async Task<List<WebPost>> GetSortedAsync(DateTime from, DateTime to)
     {
         const string sql = @"SELECT * FROM get_sorted_posts(@From, @To)";
-        var posts = await npgsqlConnection.QueryAsync<Post>(sql, new { From = from, To = to });
+        var posts = await npgsqlConnection.QueryAsync<WebPost>(sql, new { From = from, To = to });
         return posts.ToList();
     }
 
-    public async Task<List<Post>> GetContainsAsync(string word)
+    public async Task<List<WebPost>> GetContainsAsync(string word)
     {
         const string sql = @"SELECT * FROM contains_in_posts(@Value)";
-        var posts = await npgsqlConnection.QueryAsync<Post>(sql, new { Value = word });
+        var posts = await npgsqlConnection.QueryAsync<WebPost>(sql, new { Value = word });
         return posts.ToList();
     }
 

@@ -4,10 +4,10 @@ namespace Application.WebScraper.Interfaces;
 
 public interface IPostRepository
 {
-    Task AddPostsAsync(List<Post> posts);
-    Task<List<Post>> TakePostsAsync();
+    Task AddPostsAsync(List<WebPost> posts);
+    Task<List<WebPost>> TakePostsAsync();
     Task<string> TakeTopTenAsync();
-    Task<List<Post>> GetSortedAsync(DateTime from, DateTime to);
-    Task<List<Post>> GetContainsAsync(string word);
-    Task<List<Post>> TakeLastTenAsync();
+    Task<List<WebPost>> GetSortedAsync(DateTime from, DateTime to);
+    Task<List<WebPost>> GetContainsAsync(string word);
+    
 }

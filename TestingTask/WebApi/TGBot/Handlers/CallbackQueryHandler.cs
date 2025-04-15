@@ -1,7 +1,9 @@
 using Application.TgBot.Interfaces;
-using Application.WebScraper.Interfaces;
+
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using IPostRepository = Application.TgBot.Interfaces.IPostRepository;
 
 namespace TestingTask.WebApi.TGBot.Handlers;
 
@@ -39,6 +41,6 @@ public class CallbackQueryHandler(TelegramBotClient botClient, IPostRepository p
     
     private async Task SendMessageAsync(long? chatId, string text, CancellationToken cancellationToken)
     {
-        await botClient.SendTextMessageAsync(chatId: chatId!, text: text, cancellationToken: cancellationToken);
+        await botClient.SendTextMessageAsync(chatId: chatId!, text: text, parseMode: ParseMode.Html, cancellationToken: cancellationToken);
     }
 }

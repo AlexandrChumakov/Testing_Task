@@ -10,10 +10,10 @@ public partial class PostParser : IPostParser
     private const string Pattern = @"<div\s+class=""content""[^>]*>(.*?)<\/div>";
     private const string Url = "https://www.zakon.kz/";
     private readonly List<JsonNode> _jsonNodes = [];
-    private readonly List<Post> _posts = [];
+    private readonly List<WebPost> _posts = [];
     private readonly Random _random = new();
 
-    public async Task<List<Post>> ParsePostsAsync()
+    public async Task<List<WebPost>> ParsePostsAsync()
     {
         var client = new HttpClient();
 
@@ -52,7 +52,7 @@ public partial class PostParser : IPostParser
             var match = MyRegex().Match(html);
             var innerHtml = match.Value;
             var desc = MyRegex1().Replace(innerHtml, string.Empty);
-            _posts.Add(new Post
+            _posts.Add(new WebPost
             {
                 Date = DateTime.Parse(time),
                 Description = desc.Trim(),

@@ -16,11 +16,11 @@ public class MessageHandler(TelegramBotClient botClient) : IBotUpdateHandler
         {
             new[]
             {
-                InlineKeyboardButton.WithCallbackData("Все новсоти", "PostsAll"),
+                InlineKeyboardButton.WithCallbackData("Все новости", "PostsAll"),
                 InlineKeyboardButton.WithCallbackData("Последнии 10 новостей", "PostsTen"),
             }
         });
-        if (text is "Нововсти" or "News")
+        if (text is "Все новости" or "News")
         {
             await SendMessageAsync(chatId, "Выберите формат", replyKeyBord, cancellationToken);
 

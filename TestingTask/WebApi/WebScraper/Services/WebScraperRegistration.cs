@@ -1,5 +1,6 @@
 using Application.WebScraper.Interfaces;
 using Application.WebScraper.Service;
+using Infrastructure.Shared;
 using Infrastructure.WebScraper.Repositories;
 using Infrastructure.WebScraper.Services;
 

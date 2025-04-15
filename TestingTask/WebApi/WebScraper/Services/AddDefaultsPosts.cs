@@ -1,5 +1,5 @@
 using Application.WebScraper.Service;
-using Infrastructure.WebScraper.Repositories;
+using Infrastructure.Shared;
 
 namespace TestingTask.WebApi.WebScraper.Services;
 

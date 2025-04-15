@@ -1,16 +1,9 @@
-using System.Text.Json;
+using Domain.Shared;
 
 namespace Domain.WebScraper.Models;
 
-public struct Post
+public class WebPost : Post
 {
-    public string Title { get; set; }
-
-    public string Description { get; set; }
-
-    public DateTime Date { get; set; }
-
-
     public override string ToString()
     {
         return
