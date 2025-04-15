@@ -52,7 +52,7 @@ public class UserServiceTests
             Password = "123456"
         };
 
-        var exception = await Assert.ThrowsAsync<Exception>(() => _userService.RegisterUserAsync(requestUser));
+        var exception = await Assert.ThrowsAsync<System.Data.DuplicateNameException>(() => _userService.RegisterUserAsync(requestUser));
         Assert.True(exception.Message is "User already exists" or "Пользователь уже существует");
     }
 
